@@ -1,0 +1,22 @@
+<button class='btn' [routerLink]="['/products/new']"> Add New Product</button>
+
+<table class='table table-striped' *ngIf="products[0]">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Qty</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{product._id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.qty}}</td>
+      <td>${{product.price}}</td>
+      <td><button class='btn' [routerLink]="['/products', product._id]">Details</button><button class='btn' [routerLink]="['/products', product._id, 'edit']">Edit</button></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,16 @@
+<h3>Update {{product.name}}</h3>
+<div>
+  <form (submit)='submit()'>
+    Name: <input type="text" name="newProduct.name" id="newProduct.name" required minlength='3' [(ngModel)]='newProduct.name' #name='ngModel' class='form-control'>
+    Qty: <input type="number" oninput="validity.valid||(value='');" name="newProduct.qty" id="newProduct.qty" required min='0' [(ngModel)]='newProduct.qty' #qty='ngModel' class='form-control'>
+    Price: $ <input type="number" pattern="[0-9]+(\.[0-9]{0,2})?%?" name="newProduct.price" id="newProduct.price" required min='0' [(ngModel)]='newProduct.price' #price='ngModel' class='form-control'>
+    <br>
+    <p class='red' *ngIf="qty.dirty && !qty.valid">Qty must be a value of 0 or more</p>
+    <p class='red' *ngIf="name.dirty && !name.valid">Name must have at least 3 characters</p>
+    <p class='red' *ngIf='price.dirty && !price.valid'>Price must be a valid price of 0.01 or more</p>
+    <p class='red' *ngFor="let error of errors">{{error}}</p>
+    <button class='btn' (click)='reset()' type='button'>Reset</button>
+    <button class='btn' type='button' [routerLink]="['/products']">Cancel</button>
+    <button class='btn' *ngIf='name.valid && qty.valid && price.valid && (name.dirty || price.dirty || qty.dirty)'>Update</button>
+  </form>
+</div>

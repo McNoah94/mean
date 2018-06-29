@@ -1,0 +1,10 @@
+<div class='detBox'>
+  <h3>Details for {{product.name}}</h3><br><br>
+  <h4>Name: {{product.name}}</h4>
+  <h4>Qty: {{product.qty}}</h4>
+  <h4>Price: ${{product.price}}</h4>
+  <div class='btnBox'>
+    <button class='btn' [routerLink]="['/products']">Back</button>
+    <button class='btn' (click)='delete(product._id)' *ngIf="product.qty == 0">Delete</button>
+  </div>
+</div>
